@@ -1,12 +1,17 @@
 const DEFAULT_MODEL = "gpt-5.6-sol";
 
-chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());
+function openSettings() {
+  return chrome.tabs.create({ url: chrome.runtime.getURL("options.html") });
+}
+
+chrome.action.onClicked.addListener(openSettings);
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.type === "OPEN_OPTIONS") {
-    chrome.runtime.openOptionsPage();
-    sendResponse({ ok: true });
-    return false;
+    openSettings()
+      .then(() => sendResponse({ ok: true }))
+      .catch((error) => sendResponse({ ok: false, error: error.message }));
+    return true;
   }
 
   if (message.type !== "INVESTIGATE_CHAT") return false;

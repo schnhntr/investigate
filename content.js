@@ -135,10 +135,13 @@
   root.querySelector(".close").addEventListener("click", () => panel.classList.remove("open"));
   root.querySelector(".settings").addEventListener("click", openSettings);
 
-  function openSettings() {
-    chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" }).catch(() => {
+  async function openSettings() {
+    try {
+      const response = await chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" });
+      if (!response?.ok) throw new Error(response?.error || "Could not open settings.");
+    } catch {
       window.open(chrome.runtime.getURL("options.html"), "_blank");
-    });
+    }
   }
 
   form.addEventListener("submit", (event) => {
