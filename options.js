@@ -5,12 +5,12 @@ const status = document.querySelector("#status");
 
 chrome.storage.local.get(["apiKey", "model"], (saved) => {
   apiKey.value = saved.apiKey || "";
-  model.value = saved.model || "gpt-4.1-mini";
+  model.value = saved.model || "gpt-5.6-sol";
 });
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  await chrome.storage.local.set({ apiKey: apiKey.value.trim(), model: model.value.trim() || "gpt-4.1-mini" });
+  await chrome.storage.local.set({ apiKey: apiKey.value.trim(), model: model.value || "gpt-5.6-sol" });
   status.textContent = "Saved";
   setTimeout(() => (status.textContent = ""), 1800);
 });

@@ -8,7 +8,8 @@ Investigate is a minimal Chrome extension that explains highlighted text in the 
 2. Enable **Developer mode**.
 3. Click **Load unpacked** and select this repository folder.
 4. Click the Investigate toolbar icon and save your OpenAI API key.
-5. Highlight text on a normal webpage and click **Investigate**.
+5. Choose a model from the dropdown. GPT-5.6 Sol is the default.
+6. Highlight text on a normal webpage and click **Investigate**.
 
 Chrome blocks content scripts on internal pages such as `chrome://extensions` and on the Chrome Web Store, so test on an ordinary webpage.
 

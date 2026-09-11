@@ -15,7 +15,15 @@
         <label for="apiKey">OpenAI API key</label>
         <input id="apiKey" type="password" autocomplete="off" placeholder="sk-…" />
         <label for="model">Model</label>
-        <input id="model" type="text" value="gpt-4.1-mini" />
+        <div class="select-wrap">
+          <select id="model">
+            <option value="gpt-5.6-sol">GPT-5.6 Sol — best quality</option>
+            <option value="gpt-5.6-terra">GPT-5.6 Terra — balanced</option>
+            <option value="gpt-5.6-luna">GPT-5.6 Luna — fastest and lowest cost</option>
+            <option value="gpt-4.1-mini">GPT-4.1 mini — legacy</option>
+          </select>
+        </div>
+        <p class="field-help">Model availability depends on your OpenAI API account.</p>
         <div class="row"><button type="submit">Save settings</button><span id="status" role="status"></span></div>
       </form>
       <p class="note">Your key is sent only to OpenAI when you ask Investigate a question. Avoid using the extension on pages containing sensitive information.</p>
