@@ -11,35 +11,44 @@
     <style>
       * { box-sizing: border-box; }
       button, textarea { font: inherit; }
-      button:focus-visible, textarea:focus-visible { outline: 3px solid #8fb5ff; outline-offset: 2px; }
-      .trigger { position: fixed; display: none; align-items: center; gap: 7px; padding: 9px 13px 9px 10px; border: 1px solid #ffffff2e; border-radius: 999px; background: #191b22; color: white; font: 650 13px/1 system-ui; letter-spacing: -.01em; box-shadow: 0 8px 24px #0c102034; cursor: pointer; pointer-events: auto; animation: pop .14s ease-out; }
-      .trigger::before { content: "✦"; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #7c5cff; font-size: 11px; }
+      button:focus-visible { outline: 2px solid #222; outline-offset: 2px; }
+      .trigger { position: fixed; display: none; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid #303030; border-radius: 999px; background: #181818; color: white; font: 620 12px/1 system-ui; letter-spacing: -.01em; box-shadow: 0 6px 18px #0002; cursor: pointer; pointer-events: auto; animation: pop .14s ease-out; }
+      .trigger::before { content: "✦"; font-size: 10px; }
       @keyframes pop { from { opacity: 0; transform: translateY(-3px) scale(.96); } }
-      .panel { position: fixed; right: 18px; bottom: 18px; width: min(360px, calc(100vw - 24px)); height: min(490px, calc(100vh - 36px)); min-height: min(330px, calc(100vh - 36px)); display: none; flex-direction: column; overflow: hidden; border: 1px solid #dfe1e7; border-radius: 20px; background: #fff; color: #20222a; font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; box-shadow: 0 24px 70px #10132226, 0 2px 8px #10132212; pointer-events: auto; animation: enter .18s ease-out; }
+      .panel { position: fixed; right: 16px; bottom: 16px; width: min(350px, calc(100vw - 24px)); height: min(480px, calc(100vh - 32px)); min-height: min(320px, calc(100vh - 32px)); display: none; flex-direction: column; overflow: hidden; border: 1px solid #dedede; border-radius: 16px; background: #fff; color: #242424; font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; box-shadow: 0 18px 55px #0000001c, 0 2px 7px #0000000d; pointer-events: auto; animation: enter .18s ease-out; }
       @keyframes enter { from { opacity: 0; transform: translateY(8px) scale(.985); } }
       .panel.open { display: flex; }
-      header { display: flex; align-items: center; justify-content: space-between; min-height: 58px; padding: 11px 12px 11px 16px; border-bottom: 1px solid #eceef2; background: #fff; }
-      .brand { display: flex; align-items: center; gap: 9px; font-weight: 720; letter-spacing: -.025em; }
-      .mark { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 9px; background: linear-gradient(145deg, #7357ff, #527ff5); color: white; font-size: 13px; box-shadow: inset 0 0 0 1px #ffffff30; }
+      header { display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 9px 10px 9px 15px; border-bottom: 1px solid #ededed; background: #fff; }
+      .brand { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 680; letter-spacing: -.02em; }
+      .mark { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 7px; background: #1f1f1f; color: white; font-size: 10px; }
       .actions { display: flex; gap: 5px; }
-      .icon { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 10px; background: transparent; color: #656975; cursor: pointer; }
-      .icon:hover { background: #f1f2f5; color: #20222a; }
-      .icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-      .selection { margin: 13px 14px 0; padding: 10px 12px; border: 1px solid #e7e4ff; border-radius: 12px; background: #f7f6ff; color: #59576a; font-size: 12.5px; max-height: 68px; overflow: auto; }
-      .selection::before { content: "Selected"; display: block; margin-bottom: 3px; color: #7058d9; font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-      .chat { flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
-      .message { max-width: 92%; white-space: pre-wrap; overflow-wrap: anywhere; }
+      .icon { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 8px; background: transparent; color: #737373; cursor: pointer; }
+      .icon:hover { background: #f3f3f3; color: #191919; }
+      .icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.75; }
+      .selection { margin: 11px 14px 0; padding: 8px 10px; border: 1px solid #e7e7e7; border-radius: 9px; background: #f7f7f7; color: #4d4d4d; font-size: 12px; max-height: 56px; overflow: auto; }
+      .selection::before { content: "Selection  ·  "; color: #999; font-size: 9px; font-weight: 720; letter-spacing: .09em; text-transform: uppercase; }
+      .chat { flex: 1; overflow: auto; padding: 15px; display: flex; flex-direction: column; gap: 14px; }
+      .message { max-width: 94%; overflow-wrap: anywhere; }
       .message.user { align-self: flex-end; padding: 9px 12px; border-radius: 14px 14px 5px 14px; background: #252832; color: white; }
-      .message.assistant { align-self: flex-start; color: #292c34; }
+      .message.assistant { align-self: stretch; max-width: 100%; color: #292929; }
+      .message.assistant p { margin: 0 0 11px; }
+      .message.assistant p:last-child { margin-bottom: 0; }
+      .message.assistant h1, .message.assistant h2, .message.assistant h3 { margin: 15px 0 6px; color: #181818; font-size: 14px; line-height: 1.35; }
+      .message.assistant h1:first-child, .message.assistant h2:first-child, .message.assistant h3:first-child { margin-top: 0; }
+      .message.assistant strong { color: #171717; font-weight: 680; }
+      .message.assistant em { color: #555; }
+      .message.assistant code { padding: 1px 5px; border: 1px solid #e2e2e2; border-radius: 5px; background: #f5f5f5; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .message.assistant ul, .message.assistant ol { margin: 4px 0 11px; padding-left: 20px; }
+      .message.assistant li { margin: 4px 0; padding-left: 1px; }
       .message.error { max-width: 100%; padding: 14px; border: 1px solid #f0d4d0; border-radius: 13px; background: #fff7f5; color: #8e3027; }
       .error-title { margin-bottom: 5px; color: #61231e; font-weight: 700; }
       .settings-cta { margin-top: 12px; padding: 9px 12px; border: 0; border-radius: 9px; background: #242630; color: white; font-weight: 650; cursor: pointer; }
       .thinking { color: #777c88; font-style: italic; }
-      form { display: flex; align-items: flex-end; gap: 8px; padding: 11px; border-top: 1px solid #eceef2; background: #fafbfc; }
-      textarea { flex: 1; max-height: 100px; resize: none; border: 1px solid #d9dce3; border-radius: 12px; padding: 10px 11px; outline: none; color: #242630; background: #fff; }
-      textarea:focus { border-color: #8975e8; box-shadow: 0 0 0 3px #795cff14; }
-      .send { display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 12px; background: #6753d8; color: #fff; font-weight: 700; cursor: pointer; }
-      .send:hover { background: #5945c7; }
+      form { display: flex; align-items: flex-end; gap: 7px; padding: 10px; border-top: 1px solid #ededed; background: #fafafa; }
+      textarea { flex: 1; max-height: 100px; resize: none; border: 1px solid #d6d6d6; border-radius: 10px; padding: 9px 10px; outline: none; color: #242424; background: #fff; }
+      textarea:focus { border-color: #8c8c8c; box-shadow: 0 0 0 2px #00000009; }
+      .send { display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 10px; background: #202020; color: #fff; font-weight: 700; cursor: pointer; }
+      .send:hover { background: #000; }
       .send:disabled { opacity: .45; }
     </style>
     <button class="trigger" type="button">Investigate</button>
@@ -172,10 +181,72 @@
   function addMessage(kind, content) {
     const el = document.createElement("div");
     el.className = `message ${kind}`;
-    el.textContent = content;
+    if (kind === "assistant") renderMarkdown(el, content);
+    else el.textContent = content;
     chat.appendChild(el);
     chat.scrollTop = chat.scrollHeight;
     return el;
+  }
+
+  function renderMarkdown(container, markdown) {
+    const lines = markdown.replace(/\r/g, "").split("\n");
+    let list = null;
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) {
+        list = null;
+        continue;
+      }
+
+      const heading = line.match(/^(#{1,3})\s+(.+)$/);
+      const bullet = line.match(/^[-*]\s+(.+)$/);
+      const numbered = line.match(/^\d+[.)]\s+(.+)$/);
+
+      if (heading) {
+        list = null;
+        const el = document.createElement(`h${heading[1].length}`);
+        appendInline(el, heading[2]);
+        container.appendChild(el);
+      } else if (bullet || numbered) {
+        const tag = numbered ? "ol" : "ul";
+        if (!list || list.tagName.toLowerCase() !== tag) {
+          list = document.createElement(tag);
+          container.appendChild(list);
+        }
+        const item = document.createElement("li");
+        appendInline(item, (bullet || numbered)[1]);
+        list.appendChild(item);
+      } else {
+        list = null;
+        const paragraph = document.createElement("p");
+        appendInline(paragraph, line);
+        container.appendChild(paragraph);
+      }
+    }
+  }
+
+  function appendInline(parent, text) {
+    const pattern = /(\*\*[^*]+\*\*|__[^_]+__|`[^`]+`|\*[^*]+\*|_[^_]+_)/g;
+    let cursor = 0;
+    for (const match of text.matchAll(pattern)) {
+      parent.appendChild(document.createTextNode(text.slice(cursor, match.index)));
+      const token = match[0];
+      let element;
+      if (token.startsWith("**") || token.startsWith("__")) {
+        element = document.createElement("strong");
+        element.textContent = token.slice(2, -2);
+      } else if (token.startsWith("`")) {
+        element = document.createElement("code");
+        element.textContent = token.slice(1, -1);
+      } else {
+        element = document.createElement("em");
+        element.textContent = token.slice(1, -1);
+      }
+      parent.appendChild(element);
+      cursor = match.index + token.length;
+    }
+    parent.appendChild(document.createTextNode(text.slice(cursor)));
   }
 
   function addError(content) {
