@@ -3,6 +3,12 @@ const DEFAULT_MODEL = "gpt-4.1-mini";
 chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.type === "OPEN_OPTIONS") {
+    chrome.runtime.openOptionsPage();
+    sendResponse({ ok: true });
+    return false;
+  }
+
   if (message.type !== "INVESTIGATE_CHAT") return false;
 
   respond(message.payload)
